@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp-depl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo
+  template:
+    metadata:
+      name: todopod
+      labels:
+        app: todo
+    spec:
+      containers:
+        - name: todo
+          image: 445567087120.dkr.ecr.ap-south-1.amazonaws.com/todoapp:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoapp-serv
+spec:
+  type: LoadBalancer
+  selector:
+    app: todo
+  ports:
+    - port: 80
+      targetPort: 3000
+      
