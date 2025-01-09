@@ -1,0 +1,13 @@
+replicaCount: 2
+
+image:
+  repository: 445567087120.dkr.ecr.ap-south-1.amazonaws.com/todoapp
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+
+containerPort: 3000
